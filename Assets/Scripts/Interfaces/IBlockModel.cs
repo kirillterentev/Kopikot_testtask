@@ -1,6 +1,7 @@
-﻿
+﻿using System;
+
 public interface IBlockModel
 {
 	BlockData GetBlockData();
-	void SubscribeToUpdateModel();
+	void SubscribeToUpdateModel(Action action);
 }

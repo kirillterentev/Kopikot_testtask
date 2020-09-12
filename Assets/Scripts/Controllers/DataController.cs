@@ -1,7 +1,7 @@
 ﻿
 public class DataController : IDataController
 {
-	public IKitModel GetKitModels()
+	public IKitModel[] GetKitModels()
 	{
 		return null;
 	}

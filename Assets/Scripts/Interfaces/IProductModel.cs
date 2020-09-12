@@ -1,6 +1,7 @@
-﻿
+﻿using System;
+
 public interface IProductModel
 {
 	ProductData GetProductData();
-	void SubscribeToUpdateModel();
+	void SubscribeToUpdateModel(Action action);
 }

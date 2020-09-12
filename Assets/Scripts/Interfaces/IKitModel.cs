@@ -1,6 +1,7 @@
-﻿
+﻿using System;
+
 public interface IKitModel
 {
 	KitData GetKitData();
-	void SubscribeToUpdateModel();
+	void SubscribeToUpdateModel(Action action);
 }

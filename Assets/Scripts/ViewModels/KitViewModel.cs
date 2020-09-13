@@ -5,9 +5,9 @@ public class KitViewModel : IKitViewModel
 	private IKitModel model;
 	private Action<KitData> UpdateKitEvent;
 
-	public KitViewModel()
+	public KitViewModel(IKitModel model)
 	{
-		model = new KitModel();
+		this.model = model;
 		model.SubscribeToUpdateModel(() => UpdateKitEvent?.Invoke(model.GetKitData()));
 	}
 

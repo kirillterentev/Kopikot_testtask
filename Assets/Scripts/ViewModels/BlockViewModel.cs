@@ -5,9 +5,9 @@ public class BlockViewModel : IBlockViewModel
 	private IBlockModel model;
 	private Action<BlockData> UpdateBlockEvent;
 
-	public BlockViewModel()
+	public BlockViewModel(IBlockModel model)
 	{
-		model = new BlockModel();
+		this.model = model;
 		model.SubscribeToUpdateModel(() => UpdateBlockEvent?.Invoke(model.GetBlockData()));
 	}
 

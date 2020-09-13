@@ -4,9 +4,9 @@ public class KitView : MonoBehaviour, IKitView
 {
 	private IKitViewModel viewModel;
 
-	private void Start()
+	public void BindViewModel(IKitViewModel viewModel)
 	{
-		viewModel = new KitViewModel();
+		this.viewModel = viewModel;
 		viewModel.SubscribeToUpdateKit(UpdateView);
 	}
 

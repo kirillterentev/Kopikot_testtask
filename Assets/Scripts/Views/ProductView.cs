@@ -10,9 +10,9 @@ public class ProductView : MonoBehaviour, IProductView
 
 	private IProductViewModel viewModel;
 
-	private void Start()
+	public void BindViewModel(IProductViewModel viewModel)
 	{
-		viewModel = new ProductViewModel();
+		this.viewModel = viewModel;
 		viewModel.SubscribeToUpdateProduct(UpdateView);
 	}
 

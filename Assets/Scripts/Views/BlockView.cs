@@ -4,9 +4,9 @@ public class BlockView : MonoBehaviour, IBlockView
 {
 	private IBlockViewModel viewModel;
 
-	private void Start()
+	public void BindViewModel(IBlockViewModel viewModel)
 	{
-		viewModel = new BlockViewModel();
+		this.viewModel = viewModel;
 		viewModel.SubscribeToUpdateBlock(UpdateView);
 	}
 

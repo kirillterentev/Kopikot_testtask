@@ -12,9 +12,9 @@ public class ProductViewModel : IProductViewModel
 		private set => UpdateProductEvent?.Invoke(model.GetProductData());
 	}
 
-	public ProductViewModel()
+	public ProductViewModel(IProductModel model)
 	{
-		model = new ProductModel();
+		this.model = model;
 		model.SubscribeToUpdateModel(() => CanBuy = model.GetProductData().CanBuy);
 	}
 

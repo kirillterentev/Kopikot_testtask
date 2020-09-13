@@ -1,7 +1,7 @@
 ﻿
 public interface IDataController
 {
-	IKitModel[] GetKitModels();
+	KitData[] GetKitData();
 	void Save();
 	void Load();
 }

@@ -3,6 +3,8 @@
 public class MarketController : MonoBehaviour
 {
 	[SerializeField]
+	private Transform uiParent;
+	[SerializeField]
 	private GameObject kitPrefab;
 	[SerializeField]
 	private GameObject blockPrefab;
@@ -28,7 +30,8 @@ public class MarketController : MonoBehaviour
 
 		var kitModel = new KitModel(kitsData[randomIndex]);
 		var kitViewModel = new KitViewModel(kitModel);
-		var kitView = Instantiate(kitPrefab).GetComponent<IKitView>();
+		var kitViewGO = Instantiate(kitPrefab);
+		var kitView = kitViewGO.GetComponent<IKitView>();
 		kitView.BindViewModel(kitViewModel);
 
 		var blocksData = kitsData[randomIndex].Blocks;
@@ -36,21 +39,28 @@ public class MarketController : MonoBehaviour
 		{
 			var blockModel = new BlockModel(blocksData[i]);
 			var blockViewModel = new BlockViewModel(blockModel);
-			var blockView = Instantiate(blockPrefab).GetComponent<IBlockView>();
+			var blockViewGO = Instantiate(blockPrefab);
+			var blockView = blockViewGO.GetComponent<IBlockView>();
 			blockView.BindViewModel(blockViewModel);
 
 			kitModel.SubscribeToUpdateModel(kitModel.UpdateModel);
+			kitView.AddBlock(blockViewGO.transform);
 
 			var productsData = blocksData[i].Products;
 			for (int j = 0; j < productsData.Length; j++)
 			{
 				var productModel = new ProductModel(productsData[j]);
 				var productViewModel = new ProductViewModel(productModel);
-				var productView = Instantiate(productPrefab).GetComponent<IProductView>();
+				var productViewGO = Instantiate(productPrefab);
+				var productView = productViewGO.GetComponent<IProductView>();
 				productView.BindViewModel(productViewModel);
 
 				blockModel.SubscribeToUpdateModel(blockModel.UpdateModel);
+				blockView.AddProduct(productViewGO.transform);
 			}
 		}
+
+		kitViewGO.transform.SetParent(uiParent);
+		kitViewGO.transform.localPosition = Vector2.zero;
 	}
 }

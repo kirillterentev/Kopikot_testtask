@@ -25,16 +25,13 @@ public class MarketController : MonoBehaviour
 
 	private void InitMarket()
 	{
-		var kitsData = dataController.GetKitData();
-		var randomIndex = Random.Range(0, kitsData.Length);
-
-		var kitModel = new KitModel(kitsData[randomIndex]);
+		var kitModel = new KitModel(dataController.GetCurrentKitData());
 		var kitViewModel = new KitViewModel(kitModel);
 		var kitViewGO = Instantiate(kitPrefab);
 		var kitView = kitViewGO.GetComponent<IKitView>();
 		kitView.BindViewModel(kitViewModel);
 
-		var blocksData = kitsData[randomIndex].Blocks;
+		var blocksData = dataController.GetCurrentKitData().Blocks;
 		for (int i = 0; i < blocksData.Length; i++)
 		{
 			var blockModel = new BlockModel(blocksData[i]);
@@ -62,5 +59,10 @@ public class MarketController : MonoBehaviour
 
 		kitViewGO.transform.SetParent(uiParent);
 		kitViewGO.transform.localPosition = Vector2.zero;
+	}
+
+	private void OnDestroy()
+	{
+		dataController.Save();
 	}
 }

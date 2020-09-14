@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = " New kit", menuName = "Create kit")]
 public class KitData : ScriptableObject

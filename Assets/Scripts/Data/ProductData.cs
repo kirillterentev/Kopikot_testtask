@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = " New product", menuName = "Create product")]
 public class ProductData : ScriptableObject

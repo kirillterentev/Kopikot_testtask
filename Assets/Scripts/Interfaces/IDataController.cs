@@ -1,7 +1,7 @@
 ﻿
 public interface IDataController
 {
-	KitData[] GetKitData();
+	KitData GetCurrentKitData();
 	void Save();
 	void Load();
 }

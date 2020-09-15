@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class MarketController : MonoBehaviour
 {
 	[SerializeField]
 	private Transform uiParent;
+	[SerializeField]
+	private Button updateButton;
+
+	[Header("Views prefabs")]
 	[SerializeField]
 	private GameObject kitPrefab;
 	[SerializeField]
@@ -20,6 +25,14 @@ public class MarketController : MonoBehaviour
 
 	private void Start()
 	{
+		updateButton.onClick.AddListener(ReinitMarket);
+		InitMarket();
+	}
+
+	public void ReinitMarket()
+	{
+		Destroy(uiParent.GetChild(0).gameObject);
+		dataController.UpdateData();
 		InitMarket();
 	}
 
@@ -64,5 +77,6 @@ public class MarketController : MonoBehaviour
 	private void OnDestroy()
 	{
 		dataController.Save();
+		updateButton.onClick.RemoveAllListeners();
 	}
 }

@@ -20,6 +20,21 @@ public class DataController : IDataController
 		return currentKitData;
 	}
 
+	public void UpdateData()
+	{
+		int randomIndex = Random.Range(0, kitsData.Length);
+
+		if (currentKitData != null)
+		{
+			while(currentKitData.Id == kitsData[randomIndex].Id)
+			{
+				randomIndex = Random.Range(0, kitsData.Length);
+			}
+		}
+
+		currentKitData = kitsData[randomIndex];
+	}
+
 	public void Save()
 	{
 		PlayerPrefs.SetString(SaveKey, currentKitData.Id);
@@ -33,9 +48,6 @@ public class DataController : IDataController
 			currentKitData = kitsData.First(kit => kit.Id == id);
 		}
 
-		if (currentKitData == null)
-		{
-			currentKitData = kitsData[Random.Range(0, kitsData.Length)];
-		}
+		UpdateData();
 	}
 }

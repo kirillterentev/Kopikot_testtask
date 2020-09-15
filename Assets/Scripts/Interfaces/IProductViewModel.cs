@@ -3,4 +3,5 @@
 public interface IProductViewModel
 {
 	void SubscribeToUpdateProduct(Action<ProductData> action);
+	void Buy();
 }

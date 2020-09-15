@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = " New product", menuName = "Create product")]
 public class ProductData : ScriptableObject
@@ -18,5 +17,9 @@ public class ProductData : ScriptableObject
 	public int Value => value;
 	public ProductType Type => type;
 	public string Description => description;
-	public bool CanBuy => canBuy;
+	public bool CanBuy
+	{
+		get => canBuy;
+		set => canBuy = value;
+	} 
 }
